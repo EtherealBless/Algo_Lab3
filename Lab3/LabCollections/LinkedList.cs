@@ -29,11 +29,11 @@ namespace Lab3.LabCollections
             }
         }
 
-        public T Pop()
+        public T? Pop()
         {
             if (head == null)
             {
-                throw new Exception("The list is empty");
+                return default;
             }
             else
             {
@@ -43,11 +43,11 @@ namespace Lab3.LabCollections
             }
         }
 
-        public T Top()
+        public T? Top()
         {
             if (head == null)
             {
-                throw new Exception("The list is empty");
+                return default;
             }
             else
             {
