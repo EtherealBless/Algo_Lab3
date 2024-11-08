@@ -37,6 +37,10 @@ namespace Lab3.LabCollections
             {
                 T data = head.Data;
                 head = head.Next;
+                if (head != null)
+                {
+                    head.Prev = null;
+                }
                 return data;
             }
         }
