@@ -1,13 +1,11 @@
-﻿using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Lab3.Menus
 {
     using Lab3.LabCollections;
 
-    internal class TestLinkedListMenu
+    internal class TestStackMenu
     {
-        private LinkedList<object> list = new LinkedList<object>();
+        private Stack<object> stack = new Stack<object>();
 
         delegate void Command(params object[] args);
 
@@ -16,20 +14,20 @@ namespace Lab3.Menus
 
         internal object? Push(object obj)
         {
-            list.Push(obj);
+            stack.Push(obj);
             return null;
         }
 
 
-        private TestLinkedListMenu()
+        private TestStackMenu()
         {
             Commands = new Dictionary<int, Command>()
             {
-                { 1, (args) => list.Push(args[0]) },
-                { 2, (args) => list.PopBack() },
-                { 3, (args) => list.Last() },
-                { 4, (args) => list.IsEmpty() },
-                { 5, (args) => list.Print() },
+                { 1, (args) => stack.Push(args[0]) },
+                { 2, (args) => stack.Pop() },
+                { 3, (args) => stack.Top() },
+                { 4, (args) => stack.IsEmpty() },
+                { 5, (args) => stack.Print() },
             };
         }
 
@@ -58,9 +56,9 @@ namespace Lab3.Menus
 
         }
 
-        public static void TestLinkedList()
+        public static void TestStack()
         {
-            TestLinkedListMenu test = new TestLinkedListMenu();
+            TestStackMenu test = new TestStackMenu();
             test.RunMenu();
         }
     }

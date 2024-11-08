@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace Lab3.LabCollections
 {
-    internal class Stack
+    internal class Stack<T>
     {
-        private LinkedList<object> list;
+        private LinkedList<T> list;
         public Stack()
         {
-            list = new LinkedList<object>();
+            list = new LinkedList<T>();
         }
-        public void Push(object obj)
+        public void Push(T obj)
         {
             list.Push(obj);
         }
-        public object? Pop()
+        public T? Pop()
         {
             return list.PopBack();
         }
-        public object? Top()
+        public T? Top()
         {
             return list.Last();
         }

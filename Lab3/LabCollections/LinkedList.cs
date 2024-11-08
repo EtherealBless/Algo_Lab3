@@ -100,7 +100,5 @@ namespace Lab3.LabCollections
                 current = current.Next;
             }
         }
-
-        public void
     }
 }
