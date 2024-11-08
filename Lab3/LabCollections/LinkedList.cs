@@ -9,8 +9,6 @@ namespace Lab3.LabCollections
 {
     internal class LinkedList<T>
     {
-        // Push(elem), Pop(), Top(), isEmpty(), Print().
-
         LinkedListNode<T>? head;
         LinkedListNode<T>? tail;
 
@@ -29,7 +27,7 @@ namespace Lab3.LabCollections
             }
         }
 
-        public T? Pop()
+        public T? PopFront()
         {
             if (head == null)
             {
@@ -43,7 +41,24 @@ namespace Lab3.LabCollections
             }
         }
 
-        public T? Top()
+        public T? PopBack()
+        {
+            if (head == null)
+            {
+                return default;
+            }
+            else
+            {
+                Debug.Assert(tail != null, "The tail is empty. This should not be possible.");
+                T data = tail.Data;
+                tail = tail?.Prev;
+                return data;
+            }
+        }
+
+
+
+        public T? First()
         {
             if (head == null)
             {
@@ -52,6 +67,18 @@ namespace Lab3.LabCollections
             else
             {
                 return head.Data;
+            }
+        }
+
+        public T? Last()
+        {
+            if (tail == null)
+            {
+                return default;
+            }
+            else
+            {
+                return tail.Data;
             }
         }
 
@@ -73,5 +100,7 @@ namespace Lab3.LabCollections
                 current = current.Next;
             }
         }
+
+        public void
     }
 }
