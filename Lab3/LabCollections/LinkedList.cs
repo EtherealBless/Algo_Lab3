@@ -23,7 +23,7 @@ namespace Lab3.LabCollections
             {
                 Debug.Assert(tail != null, "The tail is empty. This should not be possible.");
                 tail.Next = new LinkedListNode<T>(data, tail);
-                tail = tail.Next;
+                tail = tail?.Next;
             }
         }
 
@@ -52,10 +52,6 @@ namespace Lab3.LabCollections
                 Debug.Assert(tail != null, "The tail is empty. This should not be possible.");
                 T data = tail.Data;
                 tail = tail?.Prev;
-                if (tail != null)
-                {
-                    tail.Next = null;
-                }
                 return data;
             }
         }
