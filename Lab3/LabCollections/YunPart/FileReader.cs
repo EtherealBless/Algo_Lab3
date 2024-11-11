@@ -16,7 +16,7 @@ namespace Lab3.LabCollections.YunPart
         // ПОТОМУ ЧТО Я НЕ СМОГ ПОДЦЕПИТЬСЯ
         // #@ С уважением, Мисье Говнокод.
 
-        private LinkedList<object> list = new LinkedList<object>();
+        private Stack<object> list = new Stack<object>();
 
         private QueueList<object> qList = new QueueList<object>();
 
@@ -35,7 +35,7 @@ namespace Lab3.LabCollections.YunPart
             Console.WriteLine(" ");
             string[] lines = File.ReadAllLines("input.txt");
             if (numOfQueue == 1)
-                InitializeCommands();
+                InitializeCommandsSTACK();
             else if (numOfQueue == 2)
                 InitializeCommandsQueueList();
             else if (numOfQueue == 3)
@@ -64,13 +64,13 @@ namespace Lab3.LabCollections.YunPart
         }
 
 
-        public void InitializeCommands()
+        public void InitializeCommandsSTACK()
         {
             Commands = new Dictionary<int, Command>()
             {
                 { 1, (args) => { Console.WriteLine("Executing \"1\" - Push(\"" + args[0] + "\")"); list.Push(args[0]); } },
-                { 2, (args) => { Console.WriteLine("Executing \"2\" - Pop()"); list.PopBack(); } },
-                { 3, (args) => { Console.WriteLine("Executing \"3\" - Top()"); list.Last(); } },
+                { 2, (args) => { Console.WriteLine("Executing \"2\" - Pop()"); list.Pop(); } },
+                { 3, (args) => { Console.WriteLine("Executing \"3\" - Top()"); list.Top(); } },
                 { 4, (args) => { Console.WriteLine("Executing \"4\" - isEmpty()"); list.IsEmpty(); } },
                 { 5, (args) => { Console.WriteLine("Executing \"5\" - Print():"); Console.WriteLine(" "); list.Print();  } },
             };
