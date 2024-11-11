@@ -31,7 +31,7 @@ namespace Lab3.LabCollections
         }
         public void Print()
         {
-            list.Print();
+            list.PrintReverse();
         }
     }
 }
