@@ -108,5 +108,19 @@ namespace Lab3.LabCollections
                 current = current.Next;
             }
         }
+
+        public void PrintReverse()
+        {
+            LinkedListNode<T>? current = tail;
+            while (current != null)
+            {
+                Console.WriteLine(current.Data);
+                if (current.Prev != null)
+                {
+                    Console.WriteLine("↓");
+                }
+                current = current.Prev;
+            }
+        }
     }
 }
