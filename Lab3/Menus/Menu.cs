@@ -14,9 +14,9 @@ namespace Lab3.Menus
         Dictionary<int, Action> IMenu.Commands { get; set; } = new()
         {
             {1, () => Console.WriteLine("Hello, world!") },
-            {2, () => new FileReaderSTACK()},
-            {3, () => new FileReaderQUEUE(1)},
-            {4, () => new FileReaderQUEUE(2)},
+            {2, () => new FileReader(1)},
+            {3, () => new FileReader(2)},
+            {4, () => new FileReader(3)},
         };
 
         void IMenu.PrintMenu()
