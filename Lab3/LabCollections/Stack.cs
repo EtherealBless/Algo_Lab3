@@ -15,7 +15,7 @@ namespace Lab3.LabCollections
         }
         public void Push(T obj)
         {
-            list.Push(obj);
+            list.PushFront(obj);
         }
         public T? Pop()
         {
@@ -31,7 +31,7 @@ namespace Lab3.LabCollections
         }
         public void Print()
         {
-            list.PrintReverse();
+            list.Print();
         }
     }
 }
