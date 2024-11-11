@@ -17,7 +17,7 @@ namespace Lab3.LabCollections
 
         public T Dequeue()
         {
-            return list.PopFront()!;
+            return list.PopFront();
         }
 
         public bool IsEmpty()
@@ -32,7 +32,7 @@ namespace Lab3.LabCollections
 
         public T First()
         {
-            return list.First()!;
+            return list.First();
         }
     }
 }

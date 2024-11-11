@@ -13,11 +13,11 @@ namespace Lab3.LabCollections
 
         public void Enqueue(T value) => queue.Enqueue(value);
 
-        public T Dequeue()
+        public T? Dequeue()
         {
             if (IsEmpty())
             {
-                throw new InvalidOperationException("Queue is empty");
+                return default;
             }
             return queue.Dequeue();
         }
@@ -36,11 +36,11 @@ namespace Lab3.LabCollections
             }
         }
 
-        public T First()
+        public T? First()
         {
             if (IsEmpty())
             {
-                throw new InvalidOperationException("Queue is empty");
+                return default;
             }
             return queue.Peek();
         }
