@@ -1,41 +1,34 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Lab3.LabCollections.YunPart
 {
     public class FileReader
     {
+        private Dictionary<int, IExecuterLogic> logicDictionary = new Dictionary<int, IExecuterLogic>
+        {
+            { 1, new StackLogic() },
+            { 2, new QueueListLogic() },
+            { 3, new QueueQueueLogic() }
+        };
+
         public FileReader(int numOfQueue)
         {
-           //Запускает старый алгорим и все равно выводит не правильно
-           //FileReaderOLD test = new(numOfQueue);
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\input.txt");
             string[] lines = File.ReadAllLines(filePath);
 
-
-            if (numOfQueue == 1)
+            if (logicDictionary.ContainsKey(numOfQueue))
             {
-                StackLogic stackLogic = new StackLogic();
+                IExecuterLogic logic = logicDictionary[numOfQueue];
                 foreach (string line in lines)
                 {
-                    stackLogic.ExecuteCommands(line);
+                    logic.ExecuteCommands(line);
                 }
             }
-            else if (numOfQueue == 2)
+            else
             {
-                QueueListLogic queueListLogic = new QueueListLogic();
-                foreach (string line in lines)
-                {
-                    queueListLogic.ExecuteCommands(line);
-                }
-            }
-            else if (numOfQueue == 3)
-            {
-                QueueQueueLogic queueQueueLogic = new QueueQueueLogic();
-                foreach (string line in lines)
-                {
-                    queueQueueLogic.ExecuteCommands(line);
-                }
+                Console.WriteLine("Invalid numOfQueue value.");
             }
         }
     }

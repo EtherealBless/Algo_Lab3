@@ -25,7 +25,7 @@ namespace Lab3.Menus
             Console.WriteLine("1. Test LinkedList");
             Console.WriteLine("2. Read File STACK: \"input.txt\"");
             Console.WriteLine("3. Read File QUEUE: \"input.txt\"");
-            Console.WriteLine("4. Read File OURE-QUEUE: \"input.txt\"");
+            Console.WriteLine("4. Read File OUR-QUEUE: \"input.txt\"");
             Console.WriteLine(" ");
             Console.WriteLine("0. Exit");
             Console.WriteLine(" ");

@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using static Lab3.LabCollections.YunPart.CommandExecutor;
 
 namespace Lab3.LabCollections.YunPart
 {
-    public class StackLogic
+    public class StackLogic : IExecuterLogic
     {
         private Stack<object> list = new Stack<object>();
         private CommandExecutor commandExecutor;
- 
 
         public StackLogic()
         {
@@ -19,14 +17,13 @@ namespace Lab3.LabCollections.YunPart
         {
             var commands = new Dictionary<int, CommandExecutor.Command>()
             {
-                { 1, (args) => { Console.WriteLine("Executing \"1\" - Push(\"" + args[0] + "\")"); list.Push(args[0]); } },
-                { 2, (args) => { Console.WriteLine("Executing \"2\" - Pop()"); list.Pop(); } },
-                { 3, (args) => { Console.WriteLine("Executing \"3\" - Top()"); list.Top(); } },
-                { 4, (args) => { Console.WriteLine("Executing \"4\" - isEmpty()"); list.IsEmpty(); } },
-                { 5, (args) => { Console.WriteLine("Executing \"5\" - Print():"); Console.WriteLine(" "); list.Print();  } },
+                { 1, (args) => { Console.Write("Executing \"1\" - Push(\"" + args[0] + "\") -> "); list.Push(args[0]); Console.WriteLine(args[0] + " pushed to stack."); } },
+                { 2, (args) => { Console.Write("Executing \"2\" - Pop() -> "); var popped = list.Pop(); Console.WriteLine(popped + " popped from stack."); } },
+                { 3, (args) => { Console.Write("Executing \"3\" - Top() -> "); var top = list.Top(); Console.WriteLine("Top element is " + top); } },
+                { 4, (args) => { Console.Write("Executing \"4\" - isEmpty() -> "); var isEmpty = list.IsEmpty(); Console.WriteLine("Stack is " + (isEmpty ? "empty" : "not empty")); } },
+                { 5, (args) => { Console.Write("Executing \"5\" - Print() -> "); Console.WriteLine("Result:"); list.Print(); } },
             };
             commandExecutor = new CommandExecutor(commands);
-
         }
 
         public void ExecuteCommands(string input)
