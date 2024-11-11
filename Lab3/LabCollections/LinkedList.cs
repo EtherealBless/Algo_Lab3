@@ -27,6 +27,20 @@ namespace Lab3.LabCollections
             }
         }
 
+        public void PushFront(T data)
+        {
+            if (head == null)
+            {
+                head = new LinkedListNode<T>(data);
+                tail = head;
+            }
+            else
+            {
+                head.Prev = new LinkedListNode<T>(data, null, head);
+                head = head?.Prev;
+            }
+        }
+
         public T? PopFront()
         {
             if (head == null)
