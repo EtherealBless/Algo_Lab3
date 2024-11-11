@@ -13,12 +13,36 @@ namespace Lab3.LabCollections
 
         public void Enqueue(T value) => queue.Enqueue(value);
 
-        public T Dequeue() => queue.Dequeue();
+        public T? Dequeue()
+        {
+            if (IsEmpty())
+            {
+                return default;
+            }
+            return queue.Dequeue();
+        }
 
         public bool IsEmpty() => queue.Count == 0;
 
-        public void Print() => Console.WriteLine(string.Join(" ", queue));
+        public void Print()
+        {
+            if (IsEmpty())
+            {
+                Console.WriteLine("Queue is empty");
+            }
+            else
+            {
+                Console.WriteLine(string.Join(" ", queue));
+            }
+        }
 
-        public T First() => queue.Peek();
+        public T? First()
+        {
+            if (IsEmpty())
+            {
+                return default;
+            }
+            return queue.Peek();
+        }
     }
 }
