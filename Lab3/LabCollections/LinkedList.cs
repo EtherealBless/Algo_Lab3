@@ -64,8 +64,6 @@ namespace Lab3.LabCollections
             }
         }
 
-
-
         public T? First()
         {
             if (head == null)
@@ -123,12 +121,101 @@ namespace Lab3.LabCollections
             }
         }
 
-        public void Join(LinkedList<T> linkedList)
+        public void Join(LinkedList<T> linkedList) //part 4 task 9
         {
-            while (!linkedList.IsEmpty()) 
+            if ((IsEmpty() && linkedList.IsEmpty()) || (!IsEmpty() && linkedList.IsEmpty()))
             {
-                Push(linkedList.PopFront());
+                return;
+            }                
+            else if (ReferenceEquals(this, linkedList))
+            {
+                Double();
             }
+            else if (IsEmpty() && !linkedList.IsEmpty())
+            {
+                head = linkedList.head;
+                tail = linkedList.tail;
+            }          
+            else
+            {
+                tail.Next = linkedList.head;
+                linkedList.head.Prev = tail;
+            }
+        }
+
+        public void Split(T splitFactor, out LinkedList<T> firstList, out LinkedList<T> secondList) //part 4 task 10
+        {
+            firstList = new LinkedList<T>();
+            secondList = new LinkedList<T>();
+            
+            var tempHead = head;
+            var currentList = firstList;
+
+            while (tempHead is not null)
+            {
+                if (tempHead.Data.Equals(splitFactor))
+                {
+                    currentList = secondList;
+                }
+
+                currentList.Push(tempHead.Data);
+                tempHead = tempHead.Next;
+            }
+        }
+
+        public void Double() => Join(Clone()); //part 4 task 11
+
+        public void Swap(int firstIndex, int secondIndex) //part 4 task 12
+        {
+            LinkedListNode<T> firstElement = null;
+            LinkedListNode<T> secondElement = null;
+
+            var tempHead = head;
+
+            for (int i = 0; tempHead is not null; i++)
+            {
+                if (firstElement is not null && secondElement is not null)
+                {
+                    break;
+                }
+                else if(i == firstIndex)
+                {
+                    firstElement = tempHead;
+                }
+                else if (i == secondIndex)
+                {
+                    secondElement = tempHead;
+                }
+
+                tempHead = tempHead.Next;
+            }
+
+            if (firstElement is null || secondElement is null)
+            {
+                throw new ArgumentException("Invalid indexes");
+            }
+
+            var tempData = secondElement.Data;
+
+            secondElement.Data = firstElement.Data;
+
+            firstElement.Data = tempData;
+        }
+
+        public LinkedList<T> Clone() //for part 4 tasks (9, 11)
+        {
+            var cloneList = new LinkedList<T>();
+
+            var tempHead = head;
+
+            while (tempHead is not null)
+            {
+                cloneList.Push(tempHead.Data);
+
+                tempHead = tempHead.Next;
+            }
+
+            return cloneList;
         }
     }
 }
