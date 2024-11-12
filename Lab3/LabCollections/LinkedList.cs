@@ -122,5 +122,13 @@ namespace Lab3.LabCollections
                 current = current.Prev;
             }
         }
+
+        public void Join(LinkedList<T> linkedList)
+        {
+            while (!linkedList.IsEmpty()) 
+            {
+                Push(linkedList.PopFront());
+            }
+        }
     }
 }
