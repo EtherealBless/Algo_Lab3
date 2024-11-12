@@ -30,13 +30,14 @@ namespace Lab3.Menus
             Console.WriteLine("2. Read File STACK: \"input.txt\"");
             Console.WriteLine("3. Read File QUEUE: \"input.txt\"");
             Console.WriteLine("4. Read File OUR-QUEUE: \"input.txt\"");
-            Console.WriteLine("5. Execute Task 5");
-            Console.WriteLine("6. Execute Task 6");
-            Console.WriteLine("7. Execute Task 7");
-            Console.WriteLine("8. Execute Task 8");
+            Console.WriteLine("5. Task 5 - Insert list after first X.");
+            Console.WriteLine("6. Task 6 - Insert element, maintaining order.");
+            Console.WriteLine("7. Task 7 - Remove all elements E.");
+            Console.WriteLine("8. Task 8 - Insert F before first E.");
             Console.WriteLine(" ");
             Console.WriteLine("0. Exit");
             Console.WriteLine(" ");
+
         }
     }
 }
