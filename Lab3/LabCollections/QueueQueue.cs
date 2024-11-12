@@ -9,7 +9,7 @@ namespace Lab3.LabCollections
     // insertion/deletion of an element, check for emptiness, print, output of the first element.
     internal class QueueQueue<T> : IQueue<T>
     {
-        private Queue<T> queue = new Queue<T>();
+        internal Queue<T> queue = new Queue<T>();
 
         public void Enqueue(T value) => queue.Enqueue(value);
 

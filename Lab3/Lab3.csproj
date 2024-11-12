@@ -7,8 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="LabCollections\YunPart\Tusk №4 %285-8%29\" />
-  </ItemGroup>
-
 </Project>
