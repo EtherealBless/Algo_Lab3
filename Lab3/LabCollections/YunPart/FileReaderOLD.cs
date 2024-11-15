@@ -59,7 +59,7 @@ namespace Lab3.LabCollections.YunPart
                 { 2, (args) => { Console.WriteLine("Executing \"2\" - Pop()"); list.Pop(); } },
                 { 3, (args) => { Console.WriteLine("Executing \"3\" - Top()"); list.Top(); } },
                 { 4, (args) => { Console.WriteLine("Executing \"4\" - isEmpty()"); list.IsEmpty(); } },
-                { 5, (args) => { Console.WriteLine("Executing \"5\" - Print():"); Console.WriteLine(" "); list.Print();  } },
+               // { 5, (args) => { Console.WriteLine("Executing \"5\" - Print():"); Console.WriteLine(" "); list.Print();  } },
             };
         }
 
@@ -71,7 +71,7 @@ namespace Lab3.LabCollections.YunPart
                 { 2, (args) => { Console.WriteLine("Executing \"2\" - Удаление()"); qList.Dequeue(); } },
                 { 3, (args) => { Console.WriteLine("Executing \"3\" - Просмотр начала очереди()"); qList.First(); } },
                 { 4, (args) => { Console.WriteLine("Executing \"4\" - Проверка на пустоту()"); qList.IsEmpty(); } },
-                { 5, (args) => { Console.WriteLine("Executing \"5\" - Печать():"); Console.WriteLine(" "); qList.Print();  } },
+               // { 5, (args) => { Console.WriteLine("Executing \"5\" - Печать():"); Console.WriteLine(" "); qList.Print();  } },
             };
         }
 
