@@ -8,9 +8,9 @@ namespace Lab3.Menus
 {
     internal interface IMenu
     {
-        protected Dictionary<int, Action> Commands { get; set; }
+        internal Dictionary<int, Action> Commands { get; set; }
 
-        protected virtual void PrintMenu()
+        internal virtual void PrintMenu()
         {
             foreach (var command in Commands)
                 Console.WriteLine($"{command.Key}. {command.Value.Method.Name}");
