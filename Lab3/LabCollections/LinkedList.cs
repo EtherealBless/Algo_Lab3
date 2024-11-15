@@ -55,6 +55,10 @@ namespace Lab3.LabCollections
                 {
                     head.Prev = null;
                 }
+                else
+                {
+                    tail = null;
+                }
                 return data;
             }
         }
@@ -74,9 +78,14 @@ namespace Lab3.LabCollections
                 {
                     tail.Next = null;
                 }
+                else
+                {
+                    head = null;
+                }
                 return data;
             }
         }
+
 
 
 
