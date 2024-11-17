@@ -19,6 +19,10 @@ namespace Lab3.Menus
             {8, () => InputF.ExecuteTask8()},
             {9, () => MenuExecutor.ExecuteMenu(new PostfixCalculatorMenu())},
             {10, () => PostfixFileReader.ReadAndCalculate()},
+            {11, () => Lab3.LabCollections.YunPart.TREE_STACK_AND_OTHER.TopologicalSort.TopologicalSortExample.Run()},
+            {12, () => Lab3.LabCollections.YunPart.TREE_STACK_AND_OTHER.LRUCache.LRUCacheExample.Run()},
+            {13, () => Lab3.LabCollections.YunPart.TREE_STACK_AND_OTHER.RequestQueue.RequestQueueExample.Run()},
+            {14, () => Lab3.LabCollections.YunPart.TREE_STACK_AND_OTHER.SuffixTree.SuffixTreeExample.Run()}
         };
 
         public void PrintMenu()
@@ -32,8 +36,12 @@ namespace Lab3.Menus
             Console.WriteLine("6. Task 6 - Insert element, maintaining order.");
             Console.WriteLine("7. Task 7 - Remove all elements E.");
             Console.WriteLine("8. Task 8 - Insert F before first E.");
-            Console.WriteLine("9. Postfix Calculator Menu"); 
-            Console.WriteLine("10. Read and Calculate Postfix Expression from File"); 
+            Console.WriteLine("9. Postfix Calculator Menu");
+            Console.WriteLine("10. Read and Calculate Postfix Expression from File");
+            Console.WriteLine("11. Topological Sort Example");
+            Console.WriteLine("12. LRU Cache Example");
+            Console.WriteLine("13. Request Queue Example");
+            Console.WriteLine("14. Suffix Tree Example");
             Console.WriteLine(" ");
             Console.WriteLine("0. Exit");
             Console.WriteLine(" ");

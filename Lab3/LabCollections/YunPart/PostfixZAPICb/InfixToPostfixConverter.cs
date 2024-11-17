@@ -11,7 +11,7 @@ namespace Lab3.LabCollections.YunPart
             {"+", 1},
             {"-", 1},
             {"*", 2},
-            {"/", 2},
+            {":", 2},
             {"^", 3},
             {"l", 4}, // ln
             {"c", 4}, // cos

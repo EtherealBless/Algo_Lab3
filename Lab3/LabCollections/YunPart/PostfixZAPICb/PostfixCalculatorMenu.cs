@@ -13,7 +13,7 @@ namespace Lab3.Menus
             Commands = new Dictionary<int, Action>()
             {
                 {1, EvaluatePostfixExpression},
-                {2, EvaluatePostfixFromFile}
+                {2, FileReaderPostfix.ReadAndCalculate}
             };
         }
 
@@ -34,14 +34,6 @@ namespace Lab3.Menus
             string postfixExpression = InfixToPostfixConverter.ConvertToPostfix(expression);
             PostfixCalculator calculator = new PostfixCalculator();
             calculator.EvaluatePostfix(postfixExpression);
-        }
-
-        private void EvaluatePostfixFromFile()
-        {
-            Console.WriteLine("Enter the file path:");
-            string filePath = Console.ReadLine();
-            PostfixCalculator calculator = new PostfixCalculator();
-            calculator.ReadAndEvaluateFromFile(filePath);
         }
     }
 }

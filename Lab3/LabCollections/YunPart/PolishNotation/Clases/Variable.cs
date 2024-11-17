@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using Lab3.LabCollections.YunPart.PolishNotation.Clases;
 
-namespace Lab3.LabCollections.YunPart.PolishNotation.Clases
+public class Variable : Token
 {
-    public class Variable : Token
-    {
-        public char variable { get; }
+    public char VariableName { get; set; }
 
-        public Variable(char x)
-        {
-            variable = x;
-        }
+    public Variable(char variableName)
+    {
+        VariableName = variableName;
     }
 }

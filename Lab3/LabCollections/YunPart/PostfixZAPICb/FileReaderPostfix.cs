@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
-using Lab3.LabCollections.YunPart.PolishNotation;
+using Lab3.LabCollections.YunPart;
 
 namespace Lab3.Menus
 {
-    internal class PostfixFileReader
+    internal class FileReaderPostfix
     {
         public static void ReadAndCalculate()
         {
@@ -12,13 +12,8 @@ namespace Lab3.Menus
             try
             {
                 string input = File.ReadAllText(filePath);
-                Console.WriteLine("Введите значение переменной x:");
-                double x = double.Parse(Console.ReadLine());
-
-                Calculator calculator = new Calculator();
-                double result = calculator.Resulting(input, x);
-
-                Console.WriteLine($"Результат выражения \"{input}\" при x = {x} равен {result}");
+                PostfixCalculator calculator = new PostfixCalculator();
+                calculator.EvaluatePostfix(input);
             }
             catch (Exception ex)
             {

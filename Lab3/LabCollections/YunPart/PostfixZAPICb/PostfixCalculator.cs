@@ -38,7 +38,7 @@ namespace Lab3.LabCollections.YunPart
                         case "*":
                             result = stack.Pop() * stack.Pop();
                             break;
-                        case "/":
+                        case ":":
                             result = 1 / stack.Pop() * stack.Pop();
                             break;
                         case "^":
@@ -71,7 +71,6 @@ namespace Lab3.LabCollections.YunPart
             }
             else
             {
-                
                 Console.WriteLine("Result: " + stack.Pop());
             }
         }
