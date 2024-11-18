@@ -2,7 +2,6 @@
 using System.IO;
 using Lab3.LabCollections.YunPart.PolishNotation;
 
-
 namespace Lab3.Menus
 {
     internal class PostfixFileReader

@@ -1,6 +1,4 @@
-﻿
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -14,7 +12,7 @@ namespace Lab3.LabCollections.YunPart.PolishNotation
     public class Calculator
     {
         private static List<Operation> _existOperation;
-        private Stack<object> list = new Stack<object>();
+
         private static Operation FindOperation(string name)
         {
             if (_existOperation == null)
@@ -33,9 +31,9 @@ namespace Lab3.LabCollections.YunPart.PolishNotation
         {
             List<Token> postPars = Parsing(input);
             List<Token> rpn = PolishChange(postPars);
-            List<Token> rpn2 = rpn.ToList();
-            Console.WriteLine("ЗАЛУПА ЗАУЛУПА ЗАЛУПА " + rpn.ToList());
             double absoluteFinale = Calculating(rpn, x);
+            string infixExpression = ConvertToInfix(rpn);
+            Console.WriteLine($"Infix Expression: {infixExpression}");
             return absoluteFinale;
         }
 
@@ -163,7 +161,6 @@ namespace Lab3.LabCollections.YunPart.PolishNotation
             }
             while (buffer.Top() != null)
             {
-
                 finals.Add(buffer.Pop());
             }
             return finals;
@@ -210,6 +207,30 @@ namespace Lab3.LabCollections.YunPart.PolishNotation
             }
             Number resultNumber = op.Execute(numbers);
             return resultNumber.Numbering;
+        }
+
+        private string ConvertToInfix(List<Token> rpn)
+        {
+            Stack<string> stack = new Stack<string>();
+            foreach (Token token in rpn)
+            {
+                if (token is Number num)
+                {
+                    stack.Push(num.Numbering.ToString());
+                }
+                else if (token is Variable var)
+                {
+                    stack.Push(var.VariableName.ToString());
+                }
+                else if (token is Operation op)
+                {
+                    string operand2 = stack.Pop();
+                    string operand1 = stack.Pop();
+                    string newExpression = $"({operand1} {op.Name} {operand2})";
+                    stack.Push(newExpression);
+                }
+            }
+            return stack.Pop();
         }
     }
 }
