@@ -49,7 +49,7 @@ namespace Lab3.LabCollections
             }
             else
             {
-                T data = head.Data;
+                var data = head.Data;
                 head = head.Next;
                 if (head != null)
                 {
@@ -72,7 +72,7 @@ namespace Lab3.LabCollections
             else
             {
                 Debug.Assert(tail != null, "The tail is empty. This should not be possible.");
-                T data = tail.Data;
+                var data = tail.Data;
                 tail = tail?.Prev;
                 if (tail != null)
                 {
@@ -85,9 +85,6 @@ namespace Lab3.LabCollections
                 return data;
             }
         }
-
-
-
 
         public T? First()
         {
@@ -118,67 +115,311 @@ namespace Lab3.LabCollections
             return head == null;
         }
 
-        public void Print()
+        public string Print()
         {
-            LinkedListNode<T>? current = head;
+            StringBuilder sb = new StringBuilder();
+            var current = head;
             while (current != null)
             {
-                Console.WriteLine(current.Data);
+                sb.Append($"{current.Data}\n"); 
                 if (current.Next != null)
                 {
-                    Console.WriteLine("↓");
+                    sb.Append($"↓\n"); 
+                    // Console.WriteLine("↓");
                 }
                 current = current.Next;
             }
+            return sb.ToString();
         }
 
         public void PrintReverse()
         {
-            LinkedListNode<T>? current = tail;
+            var current = tail;
             while (current != null)
             {
-                Console.WriteLine(current.Data);
+                // Console.WriteLine(current.Data);
                 if (current.Prev != null)
                 {
-                    Console.WriteLine("↓");
+                    // Console.WriteLine("↓");
                 }
                 current = current.Prev;
             }
         }
 
-        public void Join(LinkedList<T> linkedList) //part 4 task 9
+        public void Reverse() //part 4 task 1
         {
-            if ((IsEmpty() && linkedList.IsEmpty()) || (!IsEmpty() && linkedList.IsEmpty()))
+            var current = head;
+            LinkedListNode<T> prev = null;
+            while (current != null)
+            {
+                var next = current.Next;
+                current.Next = prev;
+                current.Prev = next;
+                prev = current;
+                current = next;
+            }
+            tail = head;
+            head = prev;
+        }
+
+        public void SwapFirstAndLast() //part 4 task 2
+        {
+            if (head == null || head.Next == null)
             {
                 return;
             }
-            else if (ReferenceEquals(this, linkedList))
+
+            LinkedListNode<T> firstNode = head;
+            LinkedListNode<T> lastNode = tail;
+
+            head = lastNode;
+            tail = firstNode;
+
+            LinkedListNode<T> tempNext = firstNode.Next;
+            LinkedListNode<T> tempPrev = lastNode.Prev;
+
+            firstNode.Next = null;
+            firstNode.Prev = tempPrev;
+            lastNode.Next = tempNext;
+            lastNode.Prev = null;
+
+            if (tempNext != null)
+                tempNext.Prev = lastNode;
+            if (tempPrev != null)
+                tempPrev.Next = firstNode;
+
+            if (head.Next == null)
+                tail = head;
+            if (tail.Prev == null)
+                head = tail;
+        }
+
+        public int CountUniqueInts() //part 4 task 3
+        {
+            var type = typeof(T);
+            if (type != typeof(int) && type != typeof(object))
             {
-                Double();
+                return 0;
             }
-            else if (IsEmpty() && !linkedList.IsEmpty())
+
+            var uniqueInts = new HashSet<int>();
+            var current = head;
+            int totalNodes = 0;
+
+            while (current is not null)
             {
-                head = linkedList.head;
-                tail = linkedList.tail;
+                totalNodes++;
+                if (int.TryParse(current.Data?.ToString(), out int intData))
+                {
+                    uniqueInts.Add(intData);
+                }
+                current = current.Next;
             }
-            else
+
+            return uniqueInts.Count;
+        }
+
+        public void RemoveDuplicates() //part 4 task 4
+        {
+            var uniqueElements = new HashSet<T>();
+
+            var current = head;
+
+            while (current is not null)
             {
-                tail.Next = linkedList.head;
-                linkedList.head.Prev = tail;
+                if (!uniqueElements.Contains(current.Data))
+                {
+                    uniqueElements.Add(current.Data);
+                }
+                else
+                {
+                    if (current.Prev != null)
+                    {
+                        current.Prev.Next = current.Next;
+                    }
+                    else
+                    {
+                        head = current.Next;
+                    }
+
+                    if (current.Next != null)
+                    {
+                        current.Next.Prev = current.Prev;
+                    }
+                    else
+                    {
+                        tail = current.Prev;
+                    }
+                }
+
+                current = current.Next;
             }
         }
 
-        public void Split(T splitFactor, out LinkedList<T> firstList, out LinkedList<T> secondList) //part 4 task 10
+        public void InsertSelfAfter(T value) //part 4 task 5
         {
-            firstList = new LinkedList<T>();
-            secondList = new LinkedList<T>();
+            var current = head;
+            while (current != null)
+            {
+                if (current.Data.Equals(value))
+                {
+                    var newList = this.Clone();
+                    var nextNode = current.Next;
+                    current.Next = newList.head;
+                    newList.head.Prev = current;
+                    newList.tail.Next = nextNode;
+                    if (nextNode != null)
+                    {
+                        nextNode.Prev = newList.tail;
+                    }
+                    else
+                    {
+                        tail = newList.tail;
+                    }
+                    break;
+                }
+                current = current.Next;
+            }
+
+        }
+
+        public void InsertInSortedOrder(T value) //part 4 task 6
+        {
+            var current = head;
+            if (current == null) return;
+
+            while (current != null)
+            {
+                var comparable = current.Data as IComparable<T>;
+                if (comparable?.CompareTo(value) >= 0)
+                {
+                    var newNode = new LinkedListNode<T>(value);
+                    if (current.Prev != null)
+                    {
+                        current.Prev.Next = newNode;
+                        newNode.Prev = current.Prev;
+                    }
+                    else
+                    {
+                        head = newNode;
+                    }
+                    newNode.Next = current;
+                    current.Prev = newNode;
+                    return;
+                }
+                current = current.Next;
+            }
+            // If we get here, add to the end
+            Push(value);
+        }
+
+        public void RemoveAllOccurrences(T value) //part 4 task 7
+        {
+            var current = head;
+            if (current == null) return;
+
+            while (current != null)
+            {
+                if (current.Data?.Equals(value) == true)
+                {
+                    if (current.Prev != null)
+                    {
+                        current.Prev.Next = current.Next;
+                    }
+                    else
+                    {
+                        head = current.Next;
+                    }
+
+                    if (current.Next != null)
+                    {
+                        current.Next.Prev = current.Prev;
+                    }
+                    else
+                    {
+                        tail = current.Prev;
+                    }
+                }
+                current = current.Next;
+            }
+        }
+
+        public void InsertBeforeFirstOccurrence(T valueToInsert, T valueToFind) //part 4 task 8
+        {
+            Console.WriteLine($"Inserting {valueToInsert} before first occurrence of {valueToFind}");
+            var current = head;
+            if (current == null)
+            {
+                Console.WriteLine("List is empty. Returning.");
+                return;
+            }
+
+            while (current != null)
+            {
+                Console.WriteLine($"Checking node with value: {current.Data}");
+                if (current.Data?.Equals(valueToFind) == true)
+                {
+                    Console.WriteLine($"Found {valueToFind}. Inserting {valueToInsert} before it.");
+                    var newNode = new LinkedListNode<T>(valueToInsert);
+                    if (current.Prev != null)
+                    {
+                        Console.WriteLine("Inserting in the middle of the list.");
+                        current.Prev.Next = newNode;
+                        newNode.Prev = current.Prev;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Inserting at the head of the list.");
+                        head = newNode;
+                    }
+                    newNode.Next = current;
+                    current.Prev = newNode;
+                    Console.WriteLine("Insertion complete.");
+                    break;
+                }
+                current = current.Next;
+            }
+            if (current == null)
+            {
+                Console.WriteLine($"{valueToFind} not found in the list.");
+            }
+        }
+
+        public void Join(params object[] values) //part 4 task 9
+        {
+            LinkedList<T> linkedList = new();
+            foreach (var value in values)
+            {
+                linkedList.Push((T)value);
+            }
+            Join(linkedList);
+        }
+
+        public void Join(LinkedList<T> linkedList) //part 4 task 9
+        {
+            if (!IsEmpty() && !linkedList.IsEmpty())
+            {
+                if (tail != null && linkedList.head != null)
+                {
+                    tail.Next = linkedList.head;
+                    linkedList.head.Prev = tail;
+                    tail = linkedList.tail;
+                }
+            }
+        }
+
+        public (LinkedList<T>, LinkedList<T>) Split(T splitFactor) //part 4 task 10
+        {
+            var firstList = new LinkedList<T>();
+            var secondList = new LinkedList<T>();
 
             var tempHead = head;
+
             var currentList = firstList;
 
             while (tempHead is not null)
             {
-                if (tempHead.Data.Equals(splitFactor))
+                if (tempHead.Data?.Equals(splitFactor) ?? splitFactor == null)
                 {
                     currentList = secondList;
                 }
@@ -186,14 +427,16 @@ namespace Lab3.LabCollections
                 currentList.Push(tempHead.Data);
                 tempHead = tempHead.Next;
             }
+
+            return (firstList, secondList);
         }
 
         public void Double() => Join(Clone()); //part 4 task 11
 
         public void Swap(int firstIndex, int secondIndex) //part 4 task 12
         {
-            LinkedListNode<T> firstElement = null;
-            LinkedListNode<T> secondElement = null;
+            LinkedListNode<T>? firstElement = null;
+            LinkedListNode<T>? secondElement = null;
 
             var tempHead = head;
 
@@ -220,11 +463,7 @@ namespace Lab3.LabCollections
                 throw new ArgumentException("Error: Invalid indexes");
             }
 
-            var tempData = secondElement.Data;
-
-            secondElement.Data = firstElement.Data;
-
-            firstElement.Data = tempData;
+            (firstElement.Data, secondElement.Data) = (secondElement.Data, firstElement.Data);
         }
 
         public LinkedList<T> Clone() //for part 4 tasks (9, 11)

@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Lab3.Menus
 {
+    public delegate void Action(params object[]? args);
+
     internal interface IMenu
     {
         internal Dictionary<int, Action> Commands { get; set; }
 
-        internal virtual void PrintMenu()
+        public virtual void PrintMenu()
         {
             foreach (var command in Commands)
                 Console.WriteLine($"{command.Key}. {command.Value.Method.Name}");
@@ -27,13 +29,13 @@ namespace Lab3.Menus
                 return -1;
             }
 
-            if (!Commands.ContainsKey(code))
+            if (!Commands.TryGetValue(code, out Action? value))
             {
                 Console.WriteLine("Invalid command");
                 return -1;
             }
 
-            Commands[code]();
+            value();
             return code;
         }
 

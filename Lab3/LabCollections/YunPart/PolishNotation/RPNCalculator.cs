@@ -209,9 +209,9 @@ namespace Lab3.LabCollections.YunPart.PolishNotation
             return resultNumber.Numbering;
         }
 
-        private string ConvertToInfix(List<Token> rpn)
+        private string? ConvertToInfix(List<Token> rpn)
         {
-            Stack<string> stack = new Stack<string>();
+            Stack<string?> stack = new Stack<string?>();
             foreach (Token token in rpn)
             {
                 if (token is Number num)
@@ -224,8 +224,8 @@ namespace Lab3.LabCollections.YunPart.PolishNotation
                 }
                 else if (token is Operation op)
                 {
-                    string operand2 = stack.Pop();
-                    string operand1 = stack.Pop();
+                    string? operand2 = stack.Pop();
+                    string? operand1 = stack.Pop();
                     string newExpression = $"({operand1} {op.Name} {operand2})";
                     stack.Push(newExpression);
                 }

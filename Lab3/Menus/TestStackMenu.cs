@@ -1,4 +1,4 @@
-﻿
+
 namespace Lab3.Menus
 {
     using Lab3.LabCollections;
